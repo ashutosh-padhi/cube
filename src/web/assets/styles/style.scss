@@ -1,0 +1,216 @@
+$side: 80px !default;
+$size: $env-size;
+$side: $env-side + 0px;
+$side-margin: 5px;
+
+html,
+body {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+}
+
+.cube-container {
+        height: 100%;
+        width: 100%;
+        display: block;
+        // background-color: rgb(55, 55, 55);
+        // background-color: black;
+        background-image: radial-gradient(circle, #444444 0%, #000000 90%);
+        perspective: 800px;
+        user-select: none;
+}
+
+.cube {
+        width: $side;
+        height: $side;
+        transform-style: preserve-3d;
+        top: calc(50% - #{$side * 0.5});
+        left: calc(50% - #{$side * 0.5});
+        position: relative;
+        box-sizing: border-box;
+        transition: transfrom 1s;
+}
+
+.face {
+        height: $side;
+        width: $side;
+        //border: 1px solid black;
+        position: absolute;
+        box-sizing: border-box;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform-style: preserve-3d;
+}
+
+.tile {
+        height: calc(100% - #{$side-margin});
+        width: calc(100% - #{$side-margin});
+        border-radius: 5px;
+        overflow: hidden;
+        transform: translateZ(1px);
+        .tile-in {
+                height: 100%;
+                width: 100%;
+        }
+        @for $y from 0 through $size {
+                @for $x from 0 through $size {
+                        &.t-#{$y}-#{$x} .tile-in {
+                                background-position: 0 -
+                                        ($side-margin * 0.5 + $x * ($side))
+                                        0 -
+                                        ($side-margin * 0.5 + $y * ($side));
+                        }
+                }
+        }
+}
+
+$mid-point: ($size - 1) * 0.5;
+@for $y from 0 through $size {
+        @for $x from 0 through $size {
+                .f-#{$y}-#{$x} {
+                        transform: translateX(#{($x - $mid-point) * $side})
+                                translateY(#{($y - $mid-point) * $side})
+                                translateZ(#{($size * 0.5) * $side});
+                }
+                .b-#{$y}-#{$x} {
+                        transform: rotateY(180deg)
+                                translateX(#{($x - $mid-point) * $side})
+                                translateY(#{($y - $mid-point) * $side})
+                                translateZ(#{($size * 0.5) * $side});
+                }
+                .u-#{$y}-#{$x} {
+                        transform: rotateX(90deg)
+                                translateX(#{($x - $mid-point) * $side})
+                                translateY(#{($y - $mid-point) * $side})
+                                translateZ(#{($size * 0.5) * $side});
+                }
+                .d-#{$y}-#{$x} {
+                        transform: rotateX(-90deg)
+                                translateX(#{($x - $mid-point) * $side})
+                                translateY(#{($y - $mid-point) * $side})
+                                translateZ(#{($size * 0.5) * $side});
+                }
+                .l-#{$y}-#{$x} {
+                        transform: rotateY(-90deg)
+                                translateX(#{($x - $mid-point) * $side})
+                                translateY(#{($y - $mid-point) * $side})
+                                translateZ(#{($size * 0.5) * $side});
+                }
+                .r-#{$y}-#{$x} {
+                        transform: rotateY(90deg)
+                                translateX(#{($x - $mid-point) * $side})
+                                translateY(#{($y - $mid-point) * $side})
+                                translateZ(#{($size * 0.5) * $side});
+                }
+        }
+}
+
+.rotator {
+        height: $side;
+        width: $side;
+        transform-style: preserve-3d;
+}
+
+.left {
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+}
+.right {
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+}
+.top {
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+}
+.bottom {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+}
+.top-left {
+        border-bottom-right-radius: 15px;
+}
+.top-right {
+        border-bottom-left-radius: 15px;
+}
+.bottom-left {
+        border-top-right-radius: 15px;
+}
+.bottom-right {
+        border-top-left-radius: 15px;
+}
+.inner {
+        border-radius: 15px;
+}
+$color-opacity: 1;
+
+.blue {
+        background-image: $blue-image;
+        background-color: rgba(0, 0, 255, $color-opacity);
+}
+
+.red {
+        background-image: $red-image;
+        background-color: rgba(255, 0, 0, $color-opacity);
+}
+
+.green {
+        background-image: $green-image;
+        background-color: rgba(0, 255, 0, $color-opacity);
+}
+
+.yellow {
+        background-image: $yellow-image;
+        background-color: rgba(255, 255, 0, $color-opacity);
+}
+
+.orange {
+        background-image: $orange-image;
+        background-color: rgba(255, 128, 0, $color-opacity);
+}
+
+.white {
+        background-image: $white-image;
+        background-color: rgba(255, 255, 255, $color-opacity);
+}
+.help-container {
+        z-index: 200;
+        .key-btn {
+                height: 25px;
+                min-width: 30px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                background-color: white;
+                color: black;
+                border-radius: 4px;
+                padding: 0px 4px;
+        }
+        table {
+                tr {
+                        td:nth-child(1) {
+                                width: 100px;
+                                text-align: center;
+                        }
+                }
+        }
+}
+
+footer {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: white;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        p {
+                font-size: 0.8rem;
+                line-height: 0.8rem;
+                margin: 0.4rem;
+        }
+}

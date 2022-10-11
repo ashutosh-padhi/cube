@@ -1,0 +1,66 @@
+mixin keyButton(button)
+        span.key-btn #{ button }
+
+mixin keyButtonTd(button)
+        td(style={ 'padding-right': '10px' }) #[+keyButton(button)]
+
+.help-container(
+        style={ position: 'absolute', top: 0, left: 0, height: '100%', width: '100%', display: 'none', 'justify-content': 'center' }
+)
+        div(
+                style={ display: 'flex', 'background-color': 'rgba(0,0,0,0.7)', padding: '30px', 'justify-content': 'center' }
+        )
+                div 
+                        img(
+                                src=require('./assets/images/axis.png'),
+                                alt='rotation of the slices',
+                                style={ 'background-color': 'white', 'border-radius': '10px', width: '500px', padding: '10px' }
+                        )
+                div(style={ color: 'white', 'font-family': 'sans-serif', 'margin-left': '30px', 'max-width': '400px' })
+                        p drag the cube to rotate, face of the cube can&apos;t
+                                |
+                                | be rotated with mouse. For that use these
+                                | below keyboard shortcuts.
+                        table
+                                tr
+                                        +keyButtonTd("l")
+                                        td left anti-clockwise
+                                tr 
+                                        +keyButtonTd("r")
+                                        td right clockwise
+                                tr 
+                                        +keyButtonTd("u")
+                                        td up clockwise
+                                tr 
+                                        +keyButtonTd("d")
+                                        td down anti-clockwise
+                                tr
+                                        +keyButtonTd("f")
+                                        td front clockwise
+                                tr
+                                        +keyButtonTd("b")
+                                        td buttom anti-clockwise
+                                tr
+                                        +keyButtonTd("L")
+                                        td left clockwise
+                                tr 
+                                        +keyButtonTd("R")
+                                        td right anti-clockwise
+                                tr 
+                                        +keyButtonTd("U")
+                                        td up anti-clockwise
+                                tr 
+                                        +keyButtonTd("D")
+                                        td down clockwise
+                                tr
+                                        +keyButtonTd("F")
+                                        td front anti-clockwise
+                                tr
+                                        +keyButtonTd("B")
+                                        td buttom clockwise
+                                tr
+                                        td(style={ 'padding-right': '10px' }) #[+keyButton("num")] #[+keyButton("key")]
+                                        td a number can be prefixed to rotate any in between slice of the cube.
+                                                | e.g. #[+keyButton("1")] #[+keyButton("l")] will rotate the
+                                                | first slice after left face in anti-clockwise direction.
+                                                | For the case of a 3 x 3 cube it will be the middle face.
