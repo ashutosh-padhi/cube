@@ -12,7 +12,6 @@
         "keywords": [],
         "author": "Ashutosh Padhi",
         "license": "MIT",
-        "private": true,
         "dependencies": {
                 "chalk": "^4.1.2",
                 "eslint-plugin-node": "^11.1.0",
