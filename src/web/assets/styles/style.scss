@@ -4,7 +4,9 @@ $side: $env-side + 0px;
 $side-margin: 5px;
 
 html,
-body {
+body,
+#root,
+.cube-root {
         height: 100%;
         width: 100%;
         padding: 0;

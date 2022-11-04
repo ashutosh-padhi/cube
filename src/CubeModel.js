@@ -623,8 +623,8 @@ function CubeEvents(axis, direction, position, affectedTiles, next) {
 }
 
 module.exports = {
-        /** @borrows Cube as module:Cube~Cube */
-        Cube: Cube,
+        /** @borrows Cube as module:Cube~CubeModel */
+        CubeModel: Cube,
         /** @borrows SIDES as module:Cube~SIDES */
         SIDES: SIDES,
 };
